@@ -2,12 +2,15 @@ package com.max.licensingservice.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.springframework.hateoas.RepresentationModel;
 
 @Schema(description = "Лицензия")
 @Data
+@EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class License {
+public class License extends RepresentationModel<License> {
     @Schema(accessMode = Schema.AccessMode.READ_ONLY,
             description = "Идентификатор", example = "1")
     private Integer id;
