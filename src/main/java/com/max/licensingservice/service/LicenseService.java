@@ -8,7 +8,7 @@ import java.util.Random;
 @Service
 public class LicenseService {
 
-    public License getLicense(Integer licenseId, Integer organizationId) {
+    public License find(Integer licenseId, Integer organizationId) {
         return new License()
                 .setId(new Random().nextInt(1000))
                 .setLicenseId(licenseId)
@@ -18,7 +18,7 @@ public class LicenseService {
                 .setLicenseType("full");
     }
 
-    public String createLicense(License license, Integer organizationId) {
+    public String create(License license, Integer organizationId) {
         String responseMessage = null;
         if (license != null) {
             license.setOrganizationId(organizationId);
@@ -29,7 +29,7 @@ public class LicenseService {
         return responseMessage;
     }
 
-    public String updateLicense(License license, Integer organizationId) {
+    public String update(License license, Integer organizationId) {
         String responseMessage = null;
         if (license != null) {
             license.setOrganizationId(organizationId);
