@@ -39,7 +39,7 @@ public class LicenseService {
         return responseMessage;
     }
 
-    public String deleteLicense(String licenseId, String organizationId) {
+    public String delete(Integer licenseId, Integer organizationId) {
         return String.format(
                 "Deleting license with id %s for the organization %s",
                 licenseId, organizationId);
