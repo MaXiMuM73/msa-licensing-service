@@ -1,13 +1,15 @@
 package com.max.licensingservice.model;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
 public class License {
-    private Long id;
-    private String licenseId;
+    private Integer id;
+    private Integer licenseId;
     private String description;
-    private String organizationId;
+    private Integer organizationId;
     private String productName;
     private String licenseType;
 }
