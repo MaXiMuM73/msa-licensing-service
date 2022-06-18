@@ -15,6 +15,8 @@
     <description>licensing-service</description>
     <properties>
         <java.version>17</java.version>
+        <docker.image.prefix>ostock</docker.image.prefix>
+        <project.build.finalName>licensing-service</project.build.finalName>
         <springdoc-openapi-ui.version>1.6.9</springdoc-openapi-ui.version>
         <swagger-annotations.version>2.2.0</swagger-annotations.version>
     </properties>
@@ -76,6 +78,29 @@
                         </exclude>
                     </excludes>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.4.13</version>
+                <configuration>
+                    <repository>${docker.image.prefix}/
+                        ${project.artifactId}</repository>
+                    <tag>${project.version}</tag>
+                    <buildArgs>
+                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                    </buildArgs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>push</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
