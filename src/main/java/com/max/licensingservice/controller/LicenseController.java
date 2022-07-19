@@ -2,6 +2,7 @@ package com.max.licensingservice.controller;
 
 import com.max.licensingservice.controller.constants.Urls;
 import com.max.licensingservice.model.License;
+import com.max.licensingservice.model.dto.LicenseCreateDTO;
 import com.max.licensingservice.service.LicenseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -33,9 +34,9 @@ public class LicenseController {
             )
     })
     @PostMapping(Urls.Organization.OrganizationId.License.FULL)
-    public ResponseEntity<String> create(@PathVariable Integer organizationId,
-                                         @RequestBody License license) {
-        return ResponseEntity.ok(licenseService.create(license, organizationId));
+    public ResponseEntity<String> create(@PathVariable Long organizationId,
+                                         @RequestBody LicenseCreateDTO licenseCreateDTO) {
+        return ResponseEntity.ok(licenseService.create(licenseCreateDTO, organizationId));
     }
 
     @Operation(summary = "Получение лицензии")
@@ -52,8 +53,8 @@ public class LicenseController {
             )
     })
     @GetMapping(Urls.Organization.OrganizationId.License.LicenseId.FULL)
-    public ResponseEntity<License> find(@PathVariable Integer organizationId,
-                                        @PathVariable Integer licenseId) {
+    public ResponseEntity<License> find(@PathVariable Long organizationId,
+                                        @PathVariable Long licenseId) {
         return ResponseEntity.ok(licenseService.find(organizationId, licenseId));
     }
 
@@ -86,7 +87,7 @@ public class LicenseController {
     })
     @DeleteMapping(Urls.Organization.OrganizationId.License.LicenseId.FULL)
     public ResponseEntity<String> delete(@PathVariable Integer organizationId,
-                                        @PathVariable Integer licenseId) {
+                                         @PathVariable Integer licenseId) {
         return ResponseEntity.ok(licenseService.delete(licenseId, organizationId));
     }
 }
